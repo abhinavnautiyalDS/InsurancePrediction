@@ -15,20 +15,19 @@ import zipfile  # Extract ZIP files
 st.set_page_config(page_title="Insurance Policy Predictor", page_icon="💰", layout="wide")
 
 # Google Drive File (ONNX Model)
-file_id = "1mK53offiWvIUOi5XqFKe5DyQvpKz54nX"
+file_id = "1r86nZ1L5K8-aoLfA0uTm_m1C5auFS64s"
 download_url = f"https://drive.google.com/uc?export=download&id={file_id}"
-zip_filename = "RandomForestModel.zip"
 model_filename = "RandomForestModel.onnx"
 # Download the Joblib model if not already present
+#https://drive.google.com/file/d/1r86nZ1L5K8-aoLfA0uTm_m1C5auFS64s/view?usp=sharing
 if not os.path.exists(model_filename):
     st.info("Downloading model ZIP file... 📥")
-    gdown.download(download_url, zip_filename, quiet=False)
+    gdown.download(download_url, model_filename, quiet=False)
 
     # Extract ZIP File
-    with zipfile.ZipFile(zip_filename, 'r') as zip_ref:
-        zip_ref.extractall(".")  # Extract to current directory
+   
 
-    st.success("Model extracted successfully! 🚀")
+    st.success("Model downloaded successfully! 🚀")
 # Load ONNX Model
 @st.cache_resource
 def load_model():
